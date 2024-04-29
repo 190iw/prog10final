@@ -1,0 +1,17 @@
+import time
+import os
+print ("I published it")
+time.sleep(2)
+print ("I need the money")
+time.sleep(3)
+print ("but all I can paint is these dreams.")
+time.sleep(3)
+print ("Obviously, this wasn't as welcome as the first one.")
+time.sleep(3)
+print ("I have received a few calls that were less friendly")
+time.sleep(3)
+print ("more threatening")
+time.sleep(3)
+print ("I wouldn't expect to find a wad of cash in my mailbox, anytime soon")
+time.sleep(3)
+print ("It's not like that happened last time, anyways.")
