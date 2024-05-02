@@ -1,5 +1,14 @@
 import time
 import os
+import cv2
+
+painting1 = cv2.imread("crash.png")
+
+# PAINTING 1/ CAR CRASH
+def display_crash():
+    cv2.imshow("Painting", painting1)
+    cv2.waitKey(1)
+
 print ("The thing about dreams is that most of them are always forgotten, and that should be scary")
 time.sleep(5)
 print ("I had a dream of a car accident")
@@ -11,6 +20,7 @@ time.sleep(4)
 print ("So, of course, I did.")
 time.sleep(5)
 os.system('cls')
+display_crash()
 print ("It's a disfigured man crawling out of his car. His face is melting like goo")
 print ("and he's trying to scream but there's nothing coming out- Nothing comes out of a painting, not even him.")
 time.sleep(7)
@@ -31,6 +41,7 @@ time.sleep (3)
 print ("but I didn't see who")
 time.sleep (2)
 print ("I'd rather not know.")
+cv2.destroyAllWindows()
 time.sleep (3)
 print ("However, what I do know is that")
 time.sleep (2)
