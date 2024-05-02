@@ -4,38 +4,75 @@ import os
 import sys # to access the system
 import cv2
 
-# Load an image
-image_file = "dog.png"  # Change this to the path of your image file
-image = cv2.imread(image_file)
+# IMG STUFF
+image = cv2.imread("pubkept.png")
+image2 = cv2.imread("fight.png")
+image3 = cv2.imread("runafter.png")
 
-# Display the image
-def display_image():
-    cv2.namedWindow("Image", cv2.WINDOW_NORMAL)
-    cv2.imshow("Image", image)
+# PUBLISH OR KEPT IMG
+def display_pubkept():
+    cv2.imshow("CONSIENCE", image)
     cv2.waitKey(1)
 
+# FGIHT
+def display_fight():
+    cv2.imshow("CONSIENCE", image2)
+    cv2.waitKey(1)
+
+# RUN AFTER
+def display_runafter():
+    cv2.imshow("INSTINCT", image3)
+    cv2.waitKey(1)
+
+# for vids/cutscenes
+def display_cutscene(video_file):
+    cap = cv2.VideoCapture(video_file)
+
+    #FULLSCREEEN
+    cv2.namedWindow("Video", cv2.WINDOW_NORMAL)
+    cv2.setWindowProperty("Video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+
+    while cap.isOpened(): # shows the video
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        cv2.imshow("Video", frame)
+
+        if cv2.waitKey(25) & 0xFF == ord('q'): # used to skip the cutscenes by pressing q
+            break
+
+    cap.release()
+    cv2.destroyAllWindows() #destroys all cv2 windows afer use
+
+
 ## variable
-pub = 0
+pub = 0 
 kept = 0
 
+### MAIN GAME
+
 time.sleep (2)
-display_image()
-input = str(input("Moments after I had ")) #Published or Kept in attic
+display_pubkept()
+input = input("Moments after I had... ").lower() #Published or Kept in attic
 while True:
-    if input == "Published":
+    if input == "published":
         pub += 1
         os.system('cls')
         cv2.destroyAllWindows()  # Close the window
         import PbD1
         break
-    elif input == "Kept it in my attic":
+    elif input == "kept":
         kept += 1
         os.system('cls')
         cv2.destroyAllWindows()  # Close the window
         import KD1
         break
+
 time.sleep(4)
 print ('''
+       
 ░▒▓███████▓▒░   ░▒▓██████▓▒░  ░▒▓█▓▒░░▒▓█▓▒░       ░▒▓███████▓▒░  
 ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░              ░▒▓█▓▒░ 
 ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░ ░▒▓█▓▒░░▒▓█▓▒░              ░▒▓█▓▒░ 
@@ -110,38 +147,40 @@ time.sleep(5)
 os.system('cls')
 import PainterDY
 
-display_image()
-input = str(input("You decide to "))
+display_fight()
+input = str(input("You decide to ")).lower()
 while True:
-    if input == ("Fight","fight"):
+    if input == "fight":
         os.system('cls')
         cv2.destroyAllWindows()
         print ("You run down the hallway in a fit of screams.")
         time.sleep(3)
         print ("It must’ve scared the intruder and forced them to run away.")
         break
-    elif input == ("Run after it","run after it"):
+    elif input == "run away":
         os.system('cls')
         cv2.destroyAllWindows()
-        print ("You run out the house,")
+        print("You can't run away.")
+        os.system('cls')
+        time.sleep(1)
+        print ("You run down the hallway in a fit of screams.")
         time.sleep(3)
-        print ("waving your arms wildly over your head.")
-        time.sleep(3)
-        print ("You feel the tip of the knife a few times and the feeling of blood,")
-        time.sleep(3)
-        print ("trickling down your arm.")
+        print ("It must’ve scared the intruder and forced them to run away.")
         break
+
+display_runafter()
+final_choice = input("You know what to do. ").lower()
+if final_choice == "run after them":
+    os.system('cls')
+    cv2.destroyAllWindows()
+    print ("You run out the house,")
+    time.sleep(3)
+    print ("waving your arms wildly over your head.")
+    time.sleep(3)
+    print ("You feel the tip of the knife a few times and the feeling of blood,")
+    time.sleep(3)
+    print ("trickling down your arm.")
 
 time.sleep(3)
 os.system('cls')
-print ('''
-
-░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓███████▓▒░░▒▓████████▓▒░      ░▒▓█▓▒░░▒▓███████▓▒░      ░▒▓███████▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓███████▓▒░░▒▓███████▓▒░░▒▓█▓▒░▒▓███████▓▒░ ░▒▓██████▓▒░       ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░    
-   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░        
-   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░        
-   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓██████▓▒░ ░▒▓███████▓▒░░▒▓██████▓▒░        ░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓███████▓▒░░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒▒▓███▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒▒▓███▓▒░▒▓████████▓▒░  ░▒▓█▓▒░        
-   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░        
-   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░             ░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░      ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░▒▓██▓▒░ 
-   ░▒▓█▓▒░   ░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░      ░▒▓█▓▒░▒▓███████▓▒░       ░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░       ░▒▓████████▓▒░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░  ░▒▓█▓▒░▒▓██▓▒░ 
-
-''')
+display_cutscene("finalend.mp4")
